@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Packaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MVVM2024.Infrastructure.Commands;
 using MVVM2024.ViewModels.Base;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MVVM2024.ViewModels
 {
@@ -28,5 +25,27 @@ namespace MVVM2024.ViewModels
             set => Set(ref _Status, value);
         }
         #endregion
+
+        #region Команды
+        #region CloseApplicationCommand
+        public ICommand CloseApplicationCommand { get; }
+
+        private void OnCloseApplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+
+        #endregion
+        #endregion
+        public MainWinowsViewModel() 
+        {
+            #region Команды
+
+            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+            #endregion
+        }
     }
 }
