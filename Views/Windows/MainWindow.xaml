@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:MVVM2024.ViewModels"
+        xmlns:cmd="clr-namespace:MVVM2024.Infrastructure.Commands"
         xmlns:l="clr-namespace:MVVM2024"
         
         
@@ -15,7 +16,12 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"></MenuItem>
+                <!--<MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"></MenuItem>-->
+                <MenuItem Header="Выход" >
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе"></MenuItem>
